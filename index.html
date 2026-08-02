@@ -222,14 +222,6 @@
   .card.is-done { border-color: var(--good); background: var(--good-bg); }
   .card.is-taken { opacity: 0.72; }
 
-  .card-top { display: flex; justify-content: space-between; align-items: flex-start; gap: 10px; }
-  .cat-tag {
-    font-size: 0.68rem;
-    letter-spacing: 0.06em;
-    text-transform: uppercase;
-    color: var(--gold);
-    font-weight: 700;
-  }
   .card-name {
     font-size: 1.02rem;
     font-weight: 600;
@@ -287,6 +279,18 @@
     display: flex; align-items: center; justify-content: center;
   }
   .btn-step:disabled { opacity: 0.35; cursor: default; }
+
+  .btn-undo {
+    background: transparent;
+    border: none;
+    color: var(--ink-soft);
+    font-size: 0.78rem;
+    text-decoration: underline;
+    cursor: pointer;
+    padding: 4px 2px;
+    white-space: nowrap;
+  }
+  .btn-undo:hover { color: var(--wine); }
 
   .link-btn {
     display: inline-flex;
@@ -484,14 +488,17 @@
     var qtyLabel, stepperHtml;
 
     if (unlimited) {
-      done = myCount > 0;
+      // Cantidad indeterminada: entre más personas lo traigan, mejor — nunca se marca
+      // como "agotado" ni se le da apariencia de reservado para otros visitantes.
+      done = false;
       qtyLabel = total > 0
-        ? (total + (total === 1 ? " persona ya lo elige" : " personas ya lo eligen"))
+        ? (total + (total === 1 ? " persona ya lo trae" : " personas ya lo traen"))
         : "Cantidad abierta";
       stepperHtml =
-        '<button class="btn-mark ' + (done ? "done" : "") + '" data-action="' + (done ? "dec" : "inc") + '" data-id="' + item.id + '">' +
-          (done ? "✓ Yo lo traigo" : "Yo lo traigo") +
-        "</button>";
+        '<button class="btn-mark" data-action="inc" data-id="' + item.id + '">' +
+          (myCount > 0 ? "Yo también lo traigo" : "Yo lo traigo") +
+        "</button>" +
+        (myCount > 0 ? '<button class="btn-undo" data-action="dec" data-id="' + item.id + '">Deshacer</button>' : "");
     } else if (item.cant === 1) {
       var takenByOther = remaining <= 0 && myCount <= 0;
       done = myCount > 0;
@@ -515,7 +522,6 @@
 
     return (
       '<article class="card' + (done ? " is-done" : "") + (!done && !isUnlimited(item) && remaining <= 0 ? " is-taken" : "") + '" data-id="' + item.id + '">' +
-        '<div class="card-top"><span class="cat-tag">' + escapeHtml(item.cat) + "</span></div>" +
         '<div class="card-name">' + escapeHtml(item.name) + "</div>" +
         '<div class="qty-row"><span class="qty-pill">' + qtyLabel + "</span></div>" +
         '<div class="card-actions">' + stepperHtml + "</div>" +
