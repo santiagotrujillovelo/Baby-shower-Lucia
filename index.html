@@ -1,0 +1,679 @@
+<meta charset="utf-8" />
+<title>Regalos para Lucía</title>
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<style>
+  :root {
+    --wine: #7a2340;
+    --wine-deep: #591931;
+    --rose: #d99aa6;
+    --rose-soft: #f0d9dd;
+    --blush: #fbf1ec;
+    --paper: #fffbf8;
+    --gold: #ad8446;
+    --ink: #34181f;
+    --ink-soft: #6b4a52;
+    --line: #ead9d3;
+    --good: #4f7a5c;
+    --good-bg: #e7f0e8;
+    --warn: #a8622a;
+    --shadow: 0 1px 2px rgba(89, 25, 49, 0.06), 0 8px 24px -12px rgba(89, 25, 49, 0.18);
+    color-scheme: light;
+  }
+
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --wine: #e8a3b8;
+      --wine-deep: #f4c2d1;
+      --rose: #a85a6c;
+      --rose-soft: #3a2028;
+      --blush: #1c1114;
+      --paper: #241519;
+      --gold: #cba15e;
+      --ink: #f4e8e6;
+      --ink-soft: #cbaab0;
+      --line: #402730;
+      --good: #8fc79c;
+      --good-bg: #223328;
+      --warn: #e0a869;
+      --shadow: 0 1px 2px rgba(0, 0, 0, 0.3), 0 8px 24px -12px rgba(0, 0, 0, 0.5);
+      color-scheme: dark;
+    }
+  }
+  :root[data-theme="dark"] {
+    --wine: #e8a3b8; --wine-deep: #f4c2d1; --rose: #a85a6c; --rose-soft: #3a2028;
+    --blush: #1c1114; --paper: #241519; --gold: #cba15e; --ink: #f4e8e6;
+    --ink-soft: #cbaab0; --line: #402730; --good: #8fc79c; --good-bg: #223328; --warn: #e0a869;
+    color-scheme: dark;
+  }
+  :root[data-theme="light"] {
+    --wine: #7a2340; --wine-deep: #591931; --rose: #d99aa6; --rose-soft: #f0d9dd;
+    --blush: #fbf1ec; --paper: #fffbf8; --gold: #ad8446; --ink: #34181f;
+    --ink-soft: #6b4a52; --line: #ead9d3; --good: #4f7a5c; --good-bg: #e7f0e8; --warn: #a8622a;
+    color-scheme: light;
+  }
+
+  * { box-sizing: border-box; }
+  html, body { margin: 0; padding: 0; }
+  body {
+    background: var(--blush);
+    color: var(--ink);
+    font-family: -apple-system, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    line-height: 1.5;
+    -webkit-font-smoothing: antialiased;
+  }
+  @media (prefers-reduced-motion: reduce) {
+    * { animation-duration: 0.001ms !important; transition-duration: 0.001ms !important; }
+  }
+
+  .wrap { max-width: 1080px; margin: 0 auto; padding: 0 20px 140px; }
+
+  /* ---------- Hero ---------- */
+  .hero {
+    text-align: center;
+    padding: 56px 20px 40px;
+    background:
+      radial-gradient(60% 80% at 50% 0%, var(--rose-soft) 0%, transparent 70%);
+  }
+  .eyebrow {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    font-size: 0.72rem;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: var(--gold);
+    font-weight: 600;
+    margin-bottom: 18px;
+  }
+  .eyebrow::before, .eyebrow::after { content: ""; width: 26px; height: 1px; background: var(--gold); opacity: 0.6; }
+  h1.title {
+    font-family: Georgia, "Iowan Old Style", "Palatino Linotype", "Times New Roman", serif;
+    font-weight: 400;
+    font-size: clamp(2.6rem, 7vw, 4.4rem);
+    margin: 0;
+    color: var(--ink);
+    text-wrap: balance;
+  }
+  h1.title em {
+    font-style: italic;
+    color: var(--wine);
+  }
+  .subtitle {
+    max-width: 46ch;
+    margin: 18px auto 0;
+    color: var(--ink-soft);
+    font-size: 1.02rem;
+  }
+
+  .live-indicator {
+    display: inline-flex;
+    align-items: center;
+    gap: 7px;
+    margin: 18px auto 0;
+    font-size: 0.78rem;
+    font-weight: 600;
+    color: var(--ink-soft);
+    background: var(--paper);
+    border: 1px solid var(--line);
+    padding: 6px 14px;
+    border-radius: 999px;
+  }
+  .live-dot {
+    width: 8px; height: 8px;
+    border-radius: 50%;
+    background: var(--good);
+    box-shadow: 0 0 0 0 rgba(79,122,92,0.5);
+    animation: pulse 2s infinite;
+  }
+  .live-dot.offline { background: var(--warn); animation: none; }
+  @keyframes pulse {
+    0% { box-shadow: 0 0 0 0 rgba(79,122,92,0.45); }
+    70% { box-shadow: 0 0 0 7px rgba(79,122,92,0); }
+    100% { box-shadow: 0 0 0 0 rgba(79,122,92,0); }
+  }
+
+  /* ---------- Progress ---------- */
+  .progress-card {
+    max-width: 640px;
+    margin: 22px auto 0;
+    background: var(--paper);
+    border: 1px solid var(--line);
+    border-radius: 18px;
+    padding: 18px 24px;
+    box-shadow: var(--shadow);
+    display: flex;
+    align-items: center;
+    gap: 20px;
+  }
+  .progress-num { font-family: Georgia, serif; font-size: 1.9rem; color: var(--wine); white-space: nowrap; font-variant-numeric: tabular-nums; }
+  .progress-num small { font-family: -apple-system, sans-serif; font-size: 0.85rem; color: var(--ink-soft); display: block; font-weight: 500; }
+  .progress-bar-track { flex: 1; height: 8px; border-radius: 99px; background: var(--rose-soft); overflow: hidden; }
+  .progress-bar-fill { height: 100%; background: linear-gradient(90deg, var(--rose), var(--wine)); border-radius: 99px; transition: width 0.4s ease; }
+
+  /* ---------- Controls ---------- */
+  .controls {
+    display: flex;
+    gap: 12px;
+    margin: 36px 0 22px;
+    flex-wrap: wrap;
+    align-items: center;
+  }
+  .search {
+    flex: 1;
+    min-width: 220px;
+    position: relative;
+  }
+  .search input {
+    width: 100%;
+    padding: 12px 16px 12px 40px;
+    border-radius: 12px;
+    border: 1px solid var(--line);
+    background: var(--paper);
+    color: var(--ink);
+    font-size: 0.95rem;
+    outline: none;
+    transition: border-color 0.15s ease, box-shadow 0.15s ease;
+  }
+  .search input:focus { border-color: var(--wine); box-shadow: 0 0 0 3px var(--rose-soft); }
+  .search svg { position: absolute; left: 13px; top: 50%; transform: translateY(-50%); opacity: 0.5; pointer-events: none; }
+  .chip-group { display: flex; gap: 8px; }
+  .chip {
+    padding: 10px 16px;
+    border-radius: 999px;
+    border: 1px solid var(--line);
+    background: var(--paper);
+    color: var(--ink-soft);
+    font-size: 0.86rem;
+    font-weight: 600;
+    cursor: pointer;
+    white-space: nowrap;
+  }
+  .chip[aria-pressed="true"] {
+    background: var(--wine);
+    border-color: var(--wine);
+    color: var(--paper);
+  }
+  .chip:focus-visible, input:focus-visible, button:focus-visible, a:focus-visible {
+    outline: 2px solid var(--wine);
+    outline-offset: 2px;
+  }
+
+  /* ---------- Grid ---------- */
+  .grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+    gap: 16px;
+  }
+  .card {
+    background: var(--paper);
+    border: 1px solid var(--line);
+    border-radius: 16px;
+    padding: 18px;
+    box-shadow: var(--shadow);
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    animation: rise 0.35s ease both;
+    transition: transform 0.15s ease, box-shadow 0.15s ease;
+  }
+  .card:hover { transform: translateY(-2px); }
+  @keyframes rise { from { opacity: 0; transform: translateY(8px); } to { opacity: 1; transform: translateY(0); } }
+
+  .card.is-done { border-color: var(--good); background: var(--good-bg); }
+  .card.is-taken { opacity: 0.72; }
+
+  .card-top { display: flex; justify-content: space-between; align-items: flex-start; gap: 10px; }
+  .cat-tag {
+    font-size: 0.68rem;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: var(--gold);
+    font-weight: 700;
+  }
+  .card-name {
+    font-size: 1.02rem;
+    font-weight: 600;
+    color: var(--ink);
+    line-height: 1.35;
+  }
+  .qty-row {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 0.85rem;
+    color: var(--ink-soft);
+  }
+  .qty-pill {
+    background: var(--rose-soft);
+    color: var(--wine-deep);
+    border-radius: 999px;
+    padding: 2px 10px;
+    font-weight: 700;
+    font-variant-numeric: tabular-nums;
+    white-space: nowrap;
+  }
+  .card.is-done .qty-pill { background: var(--good-bg); color: var(--good); }
+
+  .card-actions { margin-top: auto; display: flex; gap: 8px; align-items: center; }
+  .btn-mark {
+    flex: 1;
+    padding: 10px 12px;
+    border-radius: 10px;
+    border: 1px solid var(--wine);
+    background: var(--wine);
+    color: var(--paper);
+    font-weight: 600;
+    font-size: 0.86rem;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 6px;
+    transition: filter 0.15s ease;
+  }
+  .btn-mark:hover { filter: brightness(1.08); }
+  .btn-mark.done { background: var(--good); border-color: var(--good); }
+  .btn-mark.full-taken { background: var(--ink-soft); border-color: var(--ink-soft); cursor: default; }
+  .btn-mark:disabled { opacity: 0.7; cursor: default; }
+
+  .btn-step {
+    width: 34px; height: 38px;
+    border-radius: 10px;
+    border: 1px solid var(--line);
+    background: var(--blush);
+    color: var(--ink);
+    font-size: 1rem;
+    cursor: pointer;
+    display: flex; align-items: center; justify-content: center;
+  }
+  .btn-step:disabled { opacity: 0.35; cursor: default; }
+
+  .link-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
+    font-size: 0.82rem;
+    color: var(--wine);
+    text-decoration: none;
+    font-weight: 600;
+    width: fit-content;
+  }
+  .link-btn:hover { text-decoration: underline; }
+  .no-link { font-size: 0.8rem; color: var(--ink-soft); font-style: italic; }
+
+  .empty-state {
+    text-align: center;
+    padding: 60px 20px;
+    color: var(--ink-soft);
+  }
+
+  /* ---------- Floating selection bar ---------- */
+  .selbar {
+    position: fixed;
+    left: 50%;
+    bottom: 18px;
+    transform: translate(-50%, 140%);
+    transition: transform 0.3s ease;
+    z-index: 40;
+    background: var(--wine-deep);
+    color: var(--paper);
+    border-radius: 16px;
+    padding: 14px 18px;
+    box-shadow: 0 12px 32px -8px rgba(0,0,0,0.35);
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    max-width: calc(100% - 32px);
+  }
+  .selbar.visible { transform: translate(-50%, 0); }
+  .selbar-count { font-weight: 700; font-size: 0.92rem; white-space: nowrap; }
+  .selbar-count b { font-variant-numeric: tabular-nums; }
+  .selbar button {
+    background: rgba(255,255,255,0.14);
+    border: 1px solid rgba(255,255,255,0.3);
+    color: var(--paper);
+    padding: 8px 14px;
+    border-radius: 10px;
+    font-size: 0.82rem;
+    font-weight: 600;
+    cursor: pointer;
+    white-space: nowrap;
+  }
+  .selbar button:hover { background: rgba(255,255,255,0.24); }
+
+  footer {
+    max-width: 640px;
+    margin: 56px auto 0;
+    text-align: center;
+    color: var(--ink-soft);
+    font-size: 0.84rem;
+    padding: 0 20px;
+    line-height: 1.6;
+  }
+  footer strong { color: var(--ink); }
+
+  .toast {
+    position: fixed;
+    bottom: 92px;
+    left: 50%;
+    transform: translate(-50%, 140%);
+    background: var(--ink);
+    color: var(--paper);
+    padding: 10px 18px;
+    border-radius: 10px;
+    font-size: 0.85rem;
+    z-index: 50;
+    transition: transform 0.25s ease;
+    max-width: calc(100% - 32px);
+    text-align: center;
+  }
+  .toast.visible { transform: translate(-50%, 0); }
+</style>
+
+<div class="wrap">
+  <header class="hero">
+    <div class="eyebrow">Baby Shower</div>
+    <h1 class="title">Regalos para <em>Lucía</em></h1>
+    <p class="subtitle">Marca lo que quieres regalarle. Cuando la cantidad disponible sea más de una, cada persona que la elige la va descontando para el resto — en vivo, para todos.</p>
+    <div class="live-indicator"><span class="live-dot" id="liveDot"></span><span id="liveLabel">Conectando…</span></div>
+
+    <div class="progress-card">
+      <div class="progress-num" id="progressNum">0<small>de <span id="progressTotal">0</span> ideas</small></div>
+      <div class="progress-bar-track"><div class="progress-bar-fill" id="progressFill" style="width:0%"></div></div>
+    </div>
+  </header>
+
+  <div class="controls">
+    <div class="search">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="7"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+      <input id="searchInput" type="text" placeholder="Buscar un artículo (ej: pañales, coche, teteros)…" autocomplete="off" />
+    </div>
+    <div class="chip-group" role="group" aria-label="Filtrar regalos">
+      <button class="chip" id="filterAll" aria-pressed="true">Todos</button>
+      <button class="chip" id="filterAvail" aria-pressed="false">Disponibles</button>
+    </div>
+  </div>
+
+  <main class="grid" id="grid"></main>
+  <p class="empty-state" id="emptyState" hidden>No encontramos ningún artículo con ese nombre.</p>
+
+  <footer>
+    <strong>Cómo funciona:</strong> esta lista se sincroniza en vivo con todos los que abran este link — no hace falta cuenta de Claude ni de Google para marcar un regalo. Usa el botón "Copiar mi selección" para avisar en el chat familiar qué elegiste.
+  </footer>
+</div>
+
+<div class="selbar" id="selbar">
+  <div class="selbar-count"><b id="selCount">0</b> regalo(s) elegido(s)</div>
+  <button id="copySelection">Copiar mi selección</button>
+</div>
+
+<div class="toast" id="toast"></div>
+
+<script src="https://www.gstatic.com/firebasejs/10.13.0/firebase-app-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.13.0/firebase-database-compat.js"></script>
+<script>
+(function () {
+  "use strict";
+
+  var ITEMS = [{"cat":"Artículos grandes","name":"Colecho portátil (extensión de la cama)","cant":1,"link":"https://www.coccoylolo.com/products/cunacolecho-electrica-corral-mastela?variant=48366872101002","id":"colecho-portatil-extension-de-la-cama"},{"cat":"Artículos grandes","name":"Coche liviano","cant":1,"link":"https://tiendasalo.com/collections/coches-y-paseadores/products/coche-de-bebe-nuna-mixx-next-granite-moises","id":"coche-liviano"},{"cat":"Artículos grandes","name":"Cargador / canguro","cant":1,"link":"https://fulareskargo.com/products/mochila-inserto","id":"cargador-canguro"},{"cat":"Artículos grandes","name":"Fular","cant":1,"link":"https://fulareskargo.com/products/fular-elastico-prearmado-gris","id":"fular"},{"cat":"Artículos grandes","name":"Bañera con patas / plegable","cant":1,"link":"https://www.coccoylolo.com/products/banera-mueble-organizador","id":"banera-con-patas-plegable"},{"cat":"Artículos grandes","name":"Bañera portatil","cant":1,"link":"https://www.coccoylolo.com/products/banera-4en1-soporte-regadera","id":"banera-portatil"},{"cat":"Artículos grandes","name":"Almohadilla de bañera","cant":1,"link":"https://www.coccoylolo.com/products/almohadilla-orejas-banera","id":"almohadilla-de-banera"},{"cat":"Artículos grandes","name":"Silla comedor","cant":1,"link":"https://www.coccoylolo.com/products/silla-comedor-alta-multifuncional?variant=47320846205066","id":"silla-comedor"},{"cat":"Artículos grandes","name":"Silla mecedora","cant":1,"link":"https://www.coccoylolo.com/products/silla-mecedora-leaf%E2%84%A2grow-nuna","id":"silla-mecedora"},{"cat":"Artículos grandes","name":"Silla para carro","cant":1,"link":"https://tiendasalo.com/products/silla-carro-bebe-first-plus-360-priori-negro?_pos=1&_sid=99224002d&_ss=r","id":"silla-para-carro"},{"cat":"Artículos grandes","name":"Tapete juego","cant":1,"link":"https://www.coccoylolo.com/collections/gimnasios-estimulacion-bebe/products/tapete-didactico-gateo","id":"tapete-juego"},{"cat":"Artículos grandes","name":"Cámaras para monitorear desde el cel","cant":1,"link":"https://www.amazon.com/HelloBaby-pantalla-panor%C3%A1mica-inclinaci%C3%B3n-conversaci%C3%B3n/dp/B0DP2C2VWB/ref=sr_1_5_sspa?crid=2W0LFFMJY6JFV&dib=eyJ2IjoiMSJ9.qocj8vNfXWs90Wml7HQ-HYlS1k3OcpthTBBGUmzFQBSd9pVa8rhQrkGsV9X64oqbwcAtBxNm4IXPCubDRvSHvo9oICpbfsKLmkVyfcvewyfpkx_aATVg1IWYQYsMex0lCvloXhlvyM2lSiOyjebTmz0gDkDaSqFQOrGUmZcBPQcqjpchgvWiTxl9B_wZ-DlWaRBGHkCm8zqWpXN3pKEi6m4hKaouhN5kSqLE5Nq0EjU.TMdwSZMv9ibleMYc_4Vo__QPiVT31axplHUDJ8lI-K8&dib_tag=se&keywords=monitor%2Bbebe%2Bsin%2Bwifi&qid=1785459345&sprefix=monitor%2Bbebe%2B%2Caps%2C242&sr=8-5-spons&sp_csd=d2lkZ2V0TmFtZT1zcF9tdGY&th=1","id":"camaras-para-monitorear-desde-el-cel"},{"cat":"Artículos grandes","name":"Baby Sense Infant Movement Monitor","cant":1,"link":"https://www.amazon.com/-/es/Sense-U-Smart-Sock-Shoe-Monitor/dp/B0G7HJPN5F/ref=sr_1_1?adgrpid=167416148787&amp&dib=eyJ2IjoiMSJ9.Fxtd5Sq9Bp2dfknUnBTBrtc0Se0_eTqU0hKdvOtQo7rHeotgh7JtFf-U2VdYAbk8-7iI5iwWWxc9dhiYoHSrU_qAi4lptd9gw5tsGtUOE6wSQRqfcgX-ucw-8A2dyQymcec9SpHM54ZuhEWrr50_nIyvfy1C0vQ4EyeIXCchA9T16sqEwPpicBJid6qnmEqKwMbRyVtOBi3cLYmViCsUYKWp5FNRjS5JA26bo4TuxwU.iiKuUp9Wyv-Rjc1hBTB25NKf4EOiA2LVj9JwDq2Ork4&amp&dib_tag=se&amp&hvadid=705103643737&amp&hvdev=c&amp&hvlocphy=9222602&amp&hvnetw=g&amp&hvqmt=e&amp&hvrand=11952862779370915196&amp&hvtargid=kwd-301094292873&amp&hydadcr=4079_13238236&amp&keywords=baby+sense&amp&mcid=e9d6be5716b33928a52dbc88c750b353&amp&qid=1785361742&amp&sr=8-1","id":"baby-sense-infant-movement-monitor"},{"cat":"Artículos grandes","name":"Colchón cambiador","cant":1,"link":"https://www.mercadolibre.com.co/cambiador-impermeable-ultra-comodo-y-seguro/up/MCOU3670083747?pdp_filters=item_id%3AMCO3401379190&from=gshop&matt_tool=49924801&matt_word=&matt_source=google&matt_campaign_id=22126928771&matt_ad_group_id=171342979177&matt_match_type=&matt_network=g&matt_device=c&matt_creative=729836848276&matt_keyword=&matt_ad_position=&matt_ad_type=pla&matt_merchant_id=5678761612&matt_product_id=MCOU3670083747&matt_product_partition_id=2389177584842&matt_target_id=aud-1997652652780%3Apla-2389177584842&cq_src=google_ads&cq_cmp=22126928771&cq_net=g&cq_plt=gp&cq_med=pla&gad_source=1&gad_campaignid=22126928771&gbraid=0AAAAAD1DcozvEBboKPOGzxt1dH3x5TNqM&gclid=CjwKCAjwyabTBhBFEiwAM3mNUFvduNSfJtJyXy1ieNQsdWzhasS0Lig2bmBtenQUjRLgsk1FH_yBcxoCElwQAvD_BwE","id":"colchon-cambiador"},{"cat":"Artículos grandes","name":"Kit limpieza, cuidado y aseo","cant":1,"link":"https://www.coccoylolo.com/products/kit-elite-esencial-momcozy","id":"kit-limpieza-cuidado-y-aseo"},{"cat":"Artículos grandes","name":"Kit de bienvenida (ROSADO)","cant":1,"link":"https://alunababyoficial.com/producto/set-de-bienvenida-a-un-tono/","id":"kit-de-bienvenida-rosado"},{"cat":"Artículos grandes","name":"Gimnasio (ROSADO)","cant":1,"link":"https://www.amazon.com/-/es/Alfombrillas-Gimnasio-Actividades-Musicales-Nacidos/dp/B0DRS6SDRC/ref=sr_1_10?crid=2T82MP9EYXUZN&dib=eyJ2IjoiMSJ9.IAOWUbWS61cgYSZCWZxeZDlmLzOvTyzeALpZ-XYHjUgVwQsJhFYvz65r53pZ_I1bUdEtmM-9GSN_v7MGtblcOSclDQbDdD6Uz7y2cTE6tWyZQyO8i2igaC8itPVdJXBmUZMivvyWxzFlT8dCkrWBjCqudn6gV0zWQ07jmLXVaIRdYQcTrMbMyU2yFZ9ATRadKYXLrMpEou9bDyO8cXSzU2Yr1iAXwq-Kc8MbEEqeVldq4kWef-ejX-nL6y9sqVxpgSnCK7PkQ8oEMsXvqvFRdP4A_T2S4rIhI6rVbHIZKTg.6yYFHXaKVJt1ez8-uF7GIAtzrTk1ZwVLy1Uq_xG0Tsk&dib_tag=se&keywords=gimnasio%2Bpara%2Bbebes%2B0-12meses&qid=1785550034&sprefix=gimnaso%2Caps%2C278&sr=8-10&th=1","id":"gimnasio-rosado"},{"cat":"Artículos grandes","name":"Caneca pañales antiolor","cant":1,"link":"https://www.amazon.com/-/es/gp/product/B0GH7TD97Y/ref=ox_sc_act_image_6?smid=A4DIO245W50EB&th=1","id":"caneca-panales-antiolor"},{"cat":"Mamá","name":"Extractor de leche eléctrico","cant":1,"link":"https://www.amazon.com/Momcozy-Extractor-m%C3%BAltiples-personalizados-extractor/dp/B0FWJNV7S8/ref=sr_1_1_sspa?adgrpid=157122592699&dib=eyJ2IjoiMSJ9.G7MzOHukgLGqMZFqaPWkBPAUv_5tr5D-BgukT-cyR0nQeOLXgx9tx9sCzVv7yAscuMYbNzGvw1FKBG0WZ_m9BbbvmFTMcq1-5t7XfzOkna0YEzeZq18yxTW1eJI2Tvce7c_O9A7_49_slvWkRQKTgYT6Gr3uxs_eYBVSAT8RONU3-ylHGE_IbnQHzIRavX-OP7IWbQOF82tF_6f0xZ-COs2L8xgmA-24uJ6BhQXdedH79OwNCUS_CCjJlADRm-kpTWgKD21qKAjCgOsGCro9_7mNu9ETz541eI1_8MK_fFg.YwVvEur0B1A1vB1HZtC1x8dlgDuxfQnIPvplztJPGZY&dib_tag=se&hvadid=685188228130&hvdev=c&hvlocphy=9215962&hvnetw=g&hvqmt=e&hvrand=14201077888089618171&hvtargid=kwd-2176740007375&hydadcr=21110_13366759&keywords=momcozy%2Bm9&mcid=09e9eb4174233119afff76637908e50c&qid=1785459895&sr=8-1-spons&sp_csd=d2lkZ2V0TmFtZT1zcF9hdGY&th=1","id":"extractor-de-leche-electrico"},{"cat":"Mamá","name":"Bolsas de almacenamiento de leche","cant":2,"link":"https://www.amazon.com/Momcozy-Easy-Pour-almacenamiento-independiente/dp/B0CYPYYQDR/ref=sr_1_1_sspa?crid=ZVBAEL87AGEZ&dib=eyJ2IjoiMSJ9.58sthR0j4xpJI77APxhIIpCoeS7Xq0Voadbm8GVt1ig-5jfwwFwkOMm7k9BFIeyDBbpCwOTafvuPGO9M9HQkcEeC7Qv35DL_MOthXcSXgUcjCWlRL2bPukJ4-xqjWWxuueEbdKCwRE6ewxW3W53W3upAWuHSXAHFyKNxu1CHvbS1JZrthcZK__cKSaZ5O84G2FFtIUdXgaYaIIgSxIrPJmGI-MNRQZRAymJgKBXBdmYAGKYTVPSyLVcY20AMYOK73_K-gNyv64KrBMi5a1ZjpX22J0i_VFHdEIwgkRaUJ8g.hWFmvlJP0sGK3IFI0Q-NtYfXsoID69EhDCz0srl1lHk&dib_tag=se&keywords=momcozy%2Bbolsas%2Bde%2Bleche&qid=1785459932&sprefix=momcozy%2Bbol%2Caps%2C295&sr=8-1-spons&sp_csd=d2lkZ2V0TmFtZT1zcF9hdGY&th=1","id":"bolsas-de-almacenamiento-de-leche"},{"cat":"Mamá","name":"Enfriador de leche","cant":1,"link":"https://www.amazon.com/Momcozy-Enfriador-exteriores-salvavidas-enfriamiento/dp/B0D3195F82/ref=sr_1_1_sspa?crid=2O61B7KIGAMCG&dib=eyJ2IjoiMSJ9.3pONBn9j7Q_XzHkJpMkbol0EqI31hdcsa2xOjCJDZpwoG9sU2JT3apMiu3RmaW0e8sTsjCMT_FI98e6uBE8dOuq34EbYBdY4Jbr0Ve901Yy-BNQSjzQUdc_541Z4mZ7iMCQSOzEI2PSbtxzyLK6x9li20CuHdW_mIAr8HIc3t_exns7Jvu5fQ4rTJTexDz4plARXriOad4LJ8ZubZTTsPwuHiv7uwzBnhiHP44khdcA7_7HCB-EmHnpd5EuRqfWbM9yr0S4s5VRE__X94Tr6KX22J0i_VFHdEIwgkRaUJ8g.1LDunD7a_swcZddXJTp-QNhsIJ8xkOQKg7PZ-uYkqLM&dib_tag=se&keywords=enfriador%2Bde%2Bleche%2Bmaterna%2Bmomcozy&qid=1785460064&sprefix=enfriador%2Bde%2Bleche%2Bmaterna%2Bmo%2Caps%2C223&sr=8-1-spons&sp_csd=d2lkZ2V0TmFtZT1zcF9hdGY&th=1","id":"enfriador-de-leche"},{"cat":"Mamá","name":"Manta para alimentar (opción 1)","cant":1,"link":"https://www.amazon.com/-/es/Blissful-Diary-Pa%C3%B1o-muselina-multiusos/dp/B0GHPWFZMR/ref=sr_1_26?crid=2X0YT2J9WMW43&amp=undefined&dib=eyJ2IjoiMSJ9.Oz03Y3jAlpoS256VAGkNnFOMrlr8kayg9yWWQt5Wn7jkaAxy7ygtUMiqiB9EZSgr7FOAbaUKlA67A9W4mxF22BYemAktPQt0TBSDRj7cCDs-2nnz-K2sLpBKEx2nLTsiz0xAr7p8AkRUQibyHcfBynGd6zALAZkzGxtq4ijhF_rB7HV8i99x6EhKNGRe3M_i-Z0lYwrThHLJyS8Q_nuoD3SO6t8KMD-NjQvY4Fze8OdXBNGYDi1q2NY_GgZPWUpwdqMmfPgoLgtNZN9yw0R7IAoY167xrlFyjRwfnDjFaDM.LjVNgat5JzD0yL-yYyumYdAQBTDFNi2fVg1eiXzCacg&dib_tag=se&keywords=mantas%2Bpara%2Bamamantar%2Bbebes&qid=1785528372&sprefix=mantas%2Bpara%2Bam%2Caps%2C229&sr=8-26&th=1","id":"manta-para-alimentar-opcion-1"},{"cat":"Mamá","name":"Manta para alimentar (opción 2)","cant":1,"link":"https://www.amazon.com/-/es/IBESTOPIA-lactancia-privacidad-transpirable-polvoriento/dp/B0FSZQXNTD/ref=sr_1_35?crid=2X0YT2J9WMW43&amp=undefined&dib=eyJ2IjoiMSJ9.Oz03Y3jAlpoS256VAGkNnFOMrlr8kayg9yWWQt5Wn7jkaAxy7ygtUMiqiB9EZSgr7FOAbaUKlA67A9W4mxF22BYemAktPQt0TBSDRj7cCDs-2nnz-K2sLpBKEx2nLTsiz0xAr7p8AkRUQibyHcfBynGd6zALAZkzGxtq4ijhF_rB7HV8i99x6EhKNGRe3M_i-Z0lYwrThHLJyS8Q_nuoD3SO6t8KMD-NjQvY4Fze8OdXBNGYDi1q2NY_GgZPWUpwdqMmfPgoLgtNZN9yw0R7IAoY167xrlFyjRwfnDjFaDM.LjVNgat5JzD0yL-yYyumYdAQBTDFNi2fVg1eiXzCacg&dib_tag=se&keywords=mantas%2Bpara%2Bamamantar%2Bbebes&qid=1785528372&sprefix=mantas%2Bpara%2Bam%2Caps%2C229&sr=8-35&th=1","id":"manta-para-alimentar-opcion-2"},{"cat":"Mamá","name":"Pads de pezón (nevera)","cant":1,"link":"https://www.mercadolibre.com.co/almohadillas-medela-de-hidrogel-medela-alivio-para-pezones/up/MCOU3966520775","id":"pads-de-pezon-nevera"},{"cat":"Mamá","name":"Protector pezón","cant":1,"link":"https://www.amazon.com/Momcozy-lactancia-perforado-transpirable-protectores/dp/B0DH2265F1/ref=sr_1_1_sspa?crid=P4PVSN4PFHBX&dib=eyJ2IjoiMSJ9.D8eCVhq7jEzooVeDuVCEo_OBBAUxu2qRiAHReoONZAmGBSWf19OsBZG_p7kWbqYxMnJ23ZYZH4k1GUkyb55vApTp0XLwXlgvfHlwBCrbz-UbAMDOUqvQvE5kZHpnBkT7R1ortHys6F7TKYJ1Fadk-vIKsqQZ4ItccH2IAjpNwUFZTLgW5Myz-fCZnGMUlsvrcDXDBYS4UYGNY-04ElCGm_9VBCDSez1TyxrVbdHfF1kGjnz_-XIBnarCNPh30DLCfCjBgNXdjem1NQul_K4lWcoN6Nbpp7lg47bG7fO5l5M.rS7bFE6AUGg-KUh3Aownn6pi1GVxkrsv_BUWIymAQ2o&dib_tag=se&keywords=protector%2Bpezon%2Blactancia&qid=1785699551&sprefix=protector%2Bpezon%2Caps%2C456&sr=8-1-spons&sp_csd=d2lkZ2V0TmFtZT1zcF9hdGY&th=1","id":"protector-pezon"},{"cat":"Mamá","name":"Cocas para almacenar leche en brasier","cant":2,"link":"https://www.amazon.com/Momcozy-Colector-colectores-lactancia-reutilizables/dp/B0D9JVL1HN/ref=sr_1_1_sspa?crid=3JL3HGINT3N4&dib=eyJ2IjoiMSJ9.rkttxcU-4i5TmBbIKZo8GOZK5vOv4uzWxMHb_D0_JhxNKWlsG_gLzCte6NrcIIF_gg6iHYwT4vQeXjBni7LLTh2OPgKzr7G-ctF0f64Ii5Ch9G4L6qwvmT9414vHcKLJHMvQx7nqlV_KAMLv44CxkR3YZ7AhPf0ynjo_y2I-zXvXPXaTB7P3jDqEuCRg3vcT9m8cLim7Nxs03mENNxKBCwWXnFNiV62CbaOf8lTrU-8TPP-T_mit3Hm0bvZCSFDppQ6nfHNIdjYy-Ks86u7rle4C3MjjePzIMJEQTf_NZCs.L-_SKUP1jkhCcAUnOU6w6YvlKryWRryz7JQuosKr5Mc&dib_tag=se&keywords=recolector%2Bde%2Bleche%2Bmomcozy&qid=1785460216&sprefix=recolector%2Bde%2Bleche%2Bmom%2Caps%2C276&sr=8-1-spons&sp_csd=d2lkZ2V0TmFtZT1zcF9hdGY&th=1","id":"cocas-para-almacenar-leche-en-brasier"},{"cat":"Alimentación","name":"Esterilizador y secador (6 teteros)","cant":1,"link":"https://www.amazon.com/-/es/Momcozy-Esterilizador-esterilizador-accesorios-sacaleches/dp/B0CQQFFQKJ/ref=sr_1_8?crid=2ALUD9LGODGZ3&dib=eyJ2IjoiMSJ9.RFBaFRMc-kOyeAmgDKBH_i_nbDWrBQ7E4xtr3E1-DWILLZ-ImftHxnaMVEtEktJ79b4YKep1HTiA3rnDr81u-oslwXxCMJMdlYh3DVLATF4TYsmo0AlqmlhqI2ayeHbR-CwU3Afoti7DiQbAWBu-WjIAv61PJmIlxWgB4JYvGfcJo1cLNoMYyumei2UyPr6qIiFxxxW5f4br4hq2Zc_1z3oYOQpjxF3glAmon-kZ1GT1u7qOrLUMM86QSmUl99-sU6-tcwe0dX6h1U2PiGA_EDHlegs46ZVN-xYQMjbDEjo.gY94hg7rTJOAiFV1oanZeUmpBTrojuXuZBIdN7Nj9Hc&dib_tag=se&keywords=esterilizador+de+biberones+momcozy&qid=1785460374&sprefix=esterili%2Caps%2C244&sr=8-8","id":"esterilizador-y-secador-6-teteros"},{"cat":"Alimentación","name":"Calentador de tetero","cant":1,"link":"https://www.amazon.com/Momcozy-calentadores-temporizador-temperatura-multifuncional/dp/B0B97M3PX2/ref=sr_1_3_sspa?__mk_es_US=%C3%85M%C3%85%C5%BD%C3%95%C3%91&crid=34ZM4IHOOSJ3E&dib=eyJ2IjoiMSJ9.MTG7RUebjgmwV-mLFW6V-GiZCUHWfc4Uxnw6WY2hl5qocbTf93tmZkSHxxJMH8jesqg-3sEEuz8yIEPceXomxeMa4YvKnaeDxKIgyD72eo0fwdkNwtMP0clMsqPFlWy1sGAN5zmQmlfffY3y4snNB18FIMQnk1tEIRv3i_BKqDUBnJzCIunGQB4-ShQsoO8_MS7xSXCZ1vmMQUrbp6SjH_SJNtn1c7UAF91q0YihVcIcTo0BXfxd1_ssrV_xExvR-9DkSJ0qPxVePjU1YplGAYKhRfPnMNUAhxw_Gn0SZ7k.cET_aPmp-nhM4oEwuHcAi_o_kwJnHjUSlodRu8s49G8&dib_tag=se&keywords=calentador%2Bde%2Btetera%2Bmomcozy&qid=1785460445&sprefix=calentador%2Bde%2Bteteros%2Bmomcozy%2Caps%2C214&sr=8-3-spons&sp_csd=d2lkZ2V0TmFtZT1zcF9hdGY&th=1","id":"calentador-de-tetero"},{"cat":"Alimentación","name":"Calentador de tetero portatil","cant":1,"link":"https://www.amazon.com/Momcozy-Calentador-Leche-Port%C3%A1til-Viajes/dp/B0DKHCWJ5G/ref=sr_1_4_sspa?__mk_es_US=%C3%85M%C3%85%C5%BD%C3%95%C3%91&crid=34ZM4IHOOSJ3E&dib=eyJ2IjoiMSJ9.MTG7RUebjgmwV-mLFW6V-GiZCUHWfc4Uxnw6WY2hl5qocbTf93tmZkSHxxJMH8jesqg-3sEEuz8yIEPceXomxeMa4YvKnaeDxKIgyD72eo0fwdkNwtMP0clMsqPFlWy1sGAN5zmQmlfffY3y4snNB18FIMQnk1tEIRv3i_BKqDUBnJzCIunGQB4-ShQsoO8_MS7xSXCZ1vmMQUrbp6SjH_SJNtn1c7UAF91q0YihVcIcTo0BXfxd1_ssrV_xExvR-9DkSJ0qPxVePjU1YplGAYKhRfPnMNUAhxw_Gn0SZ7k.cET_aPmp-nhM4oEwuHcAi_o_kwJnHjUSlodRu8s49G8&dib_tag=se&keywords=calentador%2Bde%2Btetera%2Bmomcozy&qid=1785460445&sprefix=calentador%2Bde%2Bteteros%2Bmomcozy%2Caps%2C214&sr=8-4-spons&sp_csd=d2lkZ2V0TmFtZT1zcF9hdGY&th=1","id":"calentador-de-tetero-portatil"},{"cat":"Alimentación","name":"Teteros","cant":2,"link":"https://www.amazon.com/-/es/Philips-respuesta-conjunto-SCD838-02/dp/B098YHK4CN/ref=sr_1_5?crid=AXEN5YVP2L0S&dib=eyJ2IjoiMSJ9.x6LotX5Ydl1-ovi41MInXRJEzKn2t9sXZkca3CGQs5n73yrgen7Qp5Mo340xpsQx8jLLBcXLwZBDXabxEYUioimB4_k_W9U2I6K5sHu-1X4dsRL9KtkCl7FZvo55GNvR9ofnWokaMXbrMSj9vYzEzNJWE8QBJm_F0bZvmBhAwSbaHJYwJEljHpiQh76tRYoHO3vB4GCFeDy6KZ4XpHQf_oSQKEuvPObkcqUuqZRI-eHv6bhQYHVff7agJ9W6lCeW3IADzBXbQQRMMsq-xDt8MFQVJkJYe5knqqt4vvp74TI.AME5sTJPGk5VMZUrfVxMEOTaFLwEnYyJ1eE_Iytx_MA&dib_tag=se&keywords=teteros%2Bavent%2Bphilips%2Banti%2Bcolicos&qid=1785460539&sprefix=teteros%2Ba%2Caps%2C233&sr=8-5&th=1","id":"teteros"},{"cat":"Alimentación","name":"Repuestos de chupos (tetinas)","cant":3,"link":"https://www.amazon.com/-/es/Philips-Avent-respuesta-SCY965-44/dp/B0F45D3X17/ref=sr_1_5?__mk_es_US=%C3%85M%C3%85%C5%BD%C3%95%C3%91&crid=24OM391CZDX08&dib=eyJ2IjoiMSJ9.e_MFSA5xCMVzszwP_ASXYCSFq2T_cwUt2DdaF-W4wcnweaT_Lu-zhvcuR2Bwhto-e1jqQynWgKTy3vlCVb4P_7pkk0pZE7SEnl8Wb296mZOOhIHgPssUhh7HWHt90_iU8n6qJz5pQgPBqCcEIBa87LebrlnAsj_q8IW3LN0_-AVM2_B2p9DqzCIx-nYLN1hjFSjYz0EQ_PWShATbEXUJtYp41NsLPaJZuIhNmAIdN_Mhfbph89ouT9DGB8YIOWnHpvAJ1YZIg5PiC7Z2q6Bql6y99p3-VzCqOLr8wfr61J0.RlBCAkDy7ziYkfW4P-eB2ugTeNtHGD5ubFNxBMzNQdM&dib_tag=se&keywords=repuesto%2Bchupon%2Bteteros%2Bavent%2Bphilips%2Banti%2Bcolicos&qid=1785460641&sprefix=repuesto%2Bchupoteteros%2Bavent%2Bphilips%2Banti%2Bcolicos%2Caps%2C205&sr=8-5&th=1","id":"repuestos-de-chupos-tetinas"},{"cat":"Alimentación","name":"Cepillos para lavar teteros","cant":1,"link":"https://www.amazon.com/Momcozy-Cepillos-Biberones-Limpiador-Dispensador/dp/B0DCZNX8NZ/ref=sxin_17_pa_sp_search_thematic_sspa?content-id=amzn1.sym.83f5ab61-f5a2-46fe-8ca0-d4cbfcb9bc51%3Aamzn1.sym.83f5ab61-f5a2-46fe-8ca0-d4cbfcb9bc51&amp=undefined&crid=3V3M8GWPQVGZM&cv_ct_cx=momcozy&keywords=momcozy&pd_rd_i=B0DCZNX8NZ&pd_rd_r=e1962e83-2b3a-4834-97f5-fa3661ad46ac&pd_rd_w=peAXB&pd_rd_wg=PAeLh&pf_rd_p=83f5ab61-f5a2-46fe-8ca0-d4cbfcb9bc51&pf_rd_r=Y3ZS81GX5PCTWE1VH9JS&qid=1785525979&sbo=RZvfv%2F%2FHxDF%2BO5021pAnSA%3D%3D&sprefix=momcos%2Caps%2C216&sr=1-1-e169343e-09af-4d41-85b1-8335fe8f32d0-spons&aref=JPIrz42AP0&sp_csd=d2lkZ2V0TmFtZT1zcF9zZWFyY2hfdGhlbWF0aWM&th=1","id":"cepillos-para-lavar-teteros"},{"cat":"Alimentación","name":"Set de alimentación (rosado y morado)","cant":2,"link":"https://www.amazon.com/Alimentaci%C3%B3n-Silicona-MIICASA-Suministros-Dirigido/dp/B0CCDKP8F9/ref=sr_1_4_sspa?__mk_es_US=%C3%85M%C3%85%C5%BD%C3%95%C3%91&amp=undefined&crid=3LG0TO72HPCIR&dib=eyJ2IjoiMSJ9.CKVbI5HwzoT0_7oNbUZDg0bh2fu2UbWfhrly-Vjb8UO6hT91aU_1E0wrtCi6Tb5PszsXc5IsZkm3bWLaA5MUJdMd-DokbHSZCb1YAyVdvdonRrRbDeqlpNYl4HppMd14DR0jlYRpcJPvuNf1smc2WmNWTgWQI47vtOjEjqOuza_YHWvmy4I5GYG1lVIherZl36WwOLAGJlHsYOjajSRPerbXELYc-7dxf_dLXNxy5ePh-VibWCMvRrovcYILalSmX55yLE9epeCBda8uFgO336YXqt5ByxkI0SCEuwajJak.Fd_GJq6t5-2qsOtOpto7I62LlEmCt7WhLV46NVb-tVY&dib_tag=se&keywords=kit%2Bde%2Balimentaci%C3%B3n%2Bde%2Bni%C3%B1a&qid=1785524680&sprefix=kit%2Bde%2Balimentaci%C3%B3n%2Bde%2Bni%C3%B1a%2Caps%2C205&sr=8-4-spons&sp_csd=d2lkZ2V0TmFtZT1zcF9hdGY&th=1","id":"set-de-alimentacion-rosado-y-morado"},{"cat":"Alimentación","name":"Vasos con agarraderas","cant":2,"link":"https://www.amazon.com/-/es/Moonkie-Entrenamiento-Boquilla-Esencial-Dirigido/dp/B0DZC9ZN6V/ref=sr_1_10?__mk_es_US=%C3%85M%C3%85%C5%BD%C3%95%C3%91&amp=undefined&crid=22DM4AHAVO0QY&dib=eyJ2IjoiMSJ9.kIuGGR6US_9lPnMPlkKYV81l6PqV9GRrP3-lQdGbWjI4SXImnS8dXkqQqFfwpP5u9qrM-sTo7BakTed3YRIUalg9DDkIKC9AVQFpHrJFHYg8yoGb4doAAdu5x8qt_kRVY_gn2qvzMzPoXgBDQCaYTSYXG-SwomTYmv0k3d0bZfh6DmCJNfu6yxbs-fWoFDk1EENr6sep8PDPxKJAGCqH8R31ipYgmL0sSkAVjMxzloKHGUmHy_52mBg72qcvB7E68-ptEV_qFO7Q_uQjto-FddbJ-VztlkXxfqAiGIhLm6Y.tTdBM3NVO6cG_C1CgWgPuZxldP4KCbsUv3V43DcO3Sk&dib_tag=se&keywords=vasos%2Bcon&th=1","id":"vasos-con-agarraderas"},{"cat":"Alimentación","name":"Baberos plásticos","cant":1,"link":"https://www.amazon.com/Eascrozn-%20Ajustables-Impermeables-Esenciales-%20Alimentaci%C3%B3n/dp/B0D47LYB8V/%20ref=sr_1_1_sspa?__mk_es_US=%C3%258%205M%C3%85%C5%BD%C3%95%C3%91%20&amp;crid=1C2U5KQ27JUZE&amp;dib=eyJ2IjoiM%20SJ9.t6O3eNzgY5deB6shnVMVoN8AfIR%20pAaxGNGTTdZYoouyzYSBQaEwB5Bl0EI%207KkyFr0gAAnrSZ-A5JRwjgfk-%204dqDjUPZP4eM2WVZL6OuSgJFOJXAN5%20doNMDmtMVZ2IvuNDKXpMmzGarPse%20tcPMv5sv-%20za8XzHLQa00KbGUY8kOasF2rdFgEixSq%20WXlkPmGSsQK3Bl76wgpC643dshL4rglf%20r95pgEM4SEqKvMVnwt9CdUY-O4Z-%20hHXfMHInOeKaZGSU6zr0WPLVzcGwT7%20Ycjmz1mxhBxrWOJR16EPsFmlSX0.Q69%20GPUVBN3-%205w0FqnyI9IgUuK5o6yJijDFIA4LaqZw4&amp;%20dib_tag=se&amp;keywords=baberos%2Bpla%20stico&amp;qid=1785525597&amp;sprefix=baber%20os%2Bplasticos%2Caps%2C279&amp;sr=8-%201-%20spons&amp;sp_csd=d2lkZ2V0TmFtZT1zcF9%20hdGY&amp;th=1","id":"baberos-plasticos"},{"cat":"Alimentación","name":"Baberos tela","cant":1,"link":"https://www.amazon.com/-/es/gp/product/B0F9YCWWRD/ref=ox_sc_act_image_4?amp=undefined&th=1","id":"baberos-tela"},{"cat":"Alimentación","name":"Baberos impermeable","cant":1,"link":"https://www.amazon.com/-/es/gp/product/B0D59TK23J/ref=ox_sc_act_image_3?th=1","id":"baberos-impermeable"},{"cat":"Alimentación","name":"Ganchos para el chupo (opción 1)","cant":1,"link":"https://www.amazon.com/-/es/chupete-silicona-YIVEKO-flores-unidades/dp/B0D6V9X7XD/ref=sr_1_7?__mk_es_US=%C3%85M%C3%85%C5%BD%C3%95%C3%91&amp=undefined&crid=1OPV7358O3OK8&dib=eyJ2IjoiMSJ9.04bQRAq7-tp_XH2hOynZt0gEVVIAKiz2EuqVSxy2eizqTIYq4TRttpNb8jXbrVglDUNqxHxX9_y-bB0GZxV02vtUU_caXRfKbQfmtBK4IEPkBZ_doU99eTiETAZdbvZDZpmX_0rVHw_rif0JJogWMfTWBFroczg_fONl50CpGK8VmFxFWrm9j8vu4dSCCxJkfawJHM3GfXA5o_zULBbgE4xfTXRYyzhpIbVk4uZmR1DmtOYbFhITPjZcY-nQhY3MPwR40PO7EyLQPzEdIm2bG5z_eCwu2FgzZfT_bk_DXJA.dT3MIxyHHB2meb-MtWsW20NTAArHRm4f4AomYkI81V4&dib_tag=se&keywords=ganchos%2Bpara%2Bchupon%2Bni%C3%B1a&qid=1785525722&sprefix=ganchos%2Bpara%2Bchupo%2Bni%C3%B1a%2Caps%2C201&sr=8-7&th=1","id":"ganchos-para-el-chupo-opcion-1"},{"cat":"Alimentación","name":"Ganchos para el chupo (opción 2)","cant":1,"link":"https://www.amazon.com/-/es/Andy-Bear-mordedor-silicona-dentici%C3%B3n/dp/B0C58PMZ8P/ref=sr_1_4?__mk_es_US=%C3%85M%C3%85%C5%BD%C3%95%C3%91&amp=undefined&crid=ILBPBU1MU6MO&dib=eyJ2IjoiMSJ9.g_A3SZrBiHYhGVwIoyn6ATAWfbJdH0auSTEjOVLM1DYok4dL2gvAEkYbGQSGVro9-ziiFi7k0HnWUWFp0Ns3h6A6NgXCWeni6I_EPWJkFUe4N3VLYZTcW0ZqmgCB_af6ItTOCiQMbQxec36r21XPjytgOeKgHawPcPPO0IUrlkAzi5VvQuB0c2VMvKCSLA996WWDY6_yyWIh0-WwjH06P7FCbDJzcSVZ44fHQnBAj_YHLtVWjEKz1g9yyx_WfLJ7u4eBfrXFVynZ1tDI395p4bdMxyLh9smF09YgwDEYiWY.V35y7vsfcnlsnz5K7CkIARvZ4slnaIvEWxDCt6BOrE8&dib_tag=se&keywords=ganchos%2Bpara%2Bchupon%2Bbebe%2Bni%C3%B1a&qid=1785525875&sprefix=ganchos%2Bpara%2Bchupos%2Bbebe%2Bni%C3%B1%2Caps%2C201&sr=8-4&th=1","id":"ganchos-para-el-chupo-opcion-2"},{"cat":"Alimentación","name":"Chupo avent nigthtime (0 a 6 )","cant":2,"link":"https://www.farmatodo.com.co/producto/209800113-chupo-avent-de","id":"chupo-avent-nigthtime-0-a-6"},{"cat":"Alimentación","name":"Chupo avent nigthtime (6 a 18)","cant":2,"link":"https://www.farmatodo.com.co/producto/209800113-chupo-avent-de","id":"chupo-avent-nigthtime-6-a-18"},{"cat":"Alimentación","name":"Porta leche en polvo","cant":1,"link":"https://www.amazon.com/-/es/Dispensador-apilable-Termichy-contenedor-port%C3%A1til/dp/B0BV2CN8MD/ref=sr_1_7?crid=3PNPSCMEMCBU7&amp=undefined&dib=eyJ2IjoiMSJ9.MoHiW4wiN1FA51BC16JUCMx5ezubyqL2gu7zjqISWKQF2MMuGlrMz65I2LygtEiwtNhsMWTtKBiEFIutCVzv8ydkhE2PMuWygOC1CS7B7oALRjipmeTpPbrr4K-lge8t-S2z2D74aqr30-MhdNTYwwCUtzB0YZp19DYjLIkkzOqDiPj05xAN6trG-QnN7mwchoH2SkasneKdreusxFlQ_APrK4-K2q_AibMlJaiUpUz5neJ_oXyL0ZZH8hkrHz317IcTV3EhjlRIk6bAADtkpaSvKcTWmOQukPKaBvwhSxQ.mACnvgLfSHZk_imcaXFTA8ivSUvYWiYMIl7K3Kgwn1U&dib_tag=se&keywords=porta%2Bleche%2Ben%2Bpolvo%2Bpara%2Bbebe&qid=1785527223&sprefix=porta%2Bleche%2B%2Caps%2C200&sr=8-7&th=1","id":"porta-leche-en-polvo"},{"cat":"Alimentación","name":"Dispensador de fruta","cant":1,"link":"https://www.amazon.com/Juguetes-dentici%C3%B3n-adorables-mordedores-comederos/dp/B08B3N12Q4/ref=sxin_17_pa_sp_search_thematic_sspa?__mk_es_US=%C3%85M%C3%85%C5%BD%C3%95%C3%91&content-id=amzn1.sym.83f5ab61-f5a2-46fe-8ca0-d4cbfcb9bc51%3Aamzn1.sym.83f5ab61-f5a2-46fe-8ca0-d4cbfcb9bc51&crid=3QCCE8DPUDQM4&cv_ct_cx=baby+fruit+dispenser&keywords=dispensador+de+fruta+bebe&pd_rd_i=B08B3N12Q4&pd_rd_r=c2e95349-ec04-4cca-b427-611e9594bcb2&pd_rd_w=9MXvW&pd_rd_wg=X9nai&pf_rd_p=83f5ab61-f5a2-46fe-8ca0-d4cbfcb9bc51&pf_rd_r=C6DHM2CYT8EK4WZMYEP6&qid=1785547965&sbo=RZvfv%2F%2FHxDF%2BO5021pAnSA%3D%3D&sprefix=dispensador+de+fruta+bebe%2Caps%2C254&sr=1-4-e169343e-09af-4d41-85b1-8335fe8f32d0-spons&aref=QBrjWdEOiF&sp_csd=d2lkZ2V0TmFtZT1zcF9zZWFyY2hfdGhlbWF0aWM&psc=1","id":"dispensador-de-fruta"},{"cat":"Alimentación","name":"Rascaencías","cant":4,"link":null,"id":"rascaencias"},{"cat":"Aseo y salud","name":"Pañales winnie Etapa (1,2,3 y 4)","cant":null,"link":null,"id":"panales-winnie-etapa-1-2-3-y-4"},{"cat":"Aseo y salud","name":"Crema pañalitis desitin morada","cant":null,"link":null,"id":"crema-panalitis-desitin-morada"},{"cat":"Aseo y salud","name":"Crema pañalitis desitin azul","cant":null,"link":null,"id":"crema-panalitis-desitin-azul"},{"cat":"Aseo y salud","name":"Pañitos húmedos sin alcohol","cant":null,"link":"https://www.pricesmart.com/es-co/producto/members-selection-toallitas-humedas-hipoalergenicas-para-bebe-6-paquetes-100-unidades-777768/777768","id":"panitos-humedos-sin-alcohol"},{"cat":"Aseo y salud","name":"Jabón líquido","cant":null,"link":"https://www.pricesmart.com/es-co/producto/cetaphil-set-de-locion-hidratante-y-bano-liquido-para-bebe-2-unidades-300-ml-515292/515292","id":"jabon-liquido"},{"cat":"Aseo y salud","name":"Jabón para lavar teteros","cant":4,"link":"https://www.amazon.com/-/es/Babyganics-regalo-est%C3%A1ndar-recarga-fragancia/dp/B0DJ2Q3R94/ref=sr_1_1?crid=2I91QKRS5LVXF&dib=eyJ2IjoiMSJ9.x-sLSw5f16R3snVXghiH6tDS3hv6OmPmQNLPeHNNryrvHbSTpMA4LzjOrmdxxnRtS6GiqEZZI_qaoLKt_ydChSmPAUccVgv59tXj-iGqIJiDXQwrqaX2B4SzvZrlsNOiWCCTA54v7ZCmF0NqW20FNC2ms07Mn8DczEwzkaq6DH6BPbRX3uu0RUNWxW2FXFt_6VZPim80Sj8mwBBVuPVIAahrnQ0Zh7WEqA8v-DAgj0oNGfKH5eN-zQQRhAW8jDIFqV2-oFxqf7NK0oWddVFUWg.rO9h6_loIZAudKSC4E6EDCd9Jc3Oe3K0Ete5EKYcXWY&dib_tag=se&keywords=babyganics+dish+and+bottle+soap&qid=1785699055&sprefix=babyganics+dish+and%2Caps%2C273&sr=8-1","id":"jabon-para-lavar-teteros"},{"cat":"Aseo y salud","name":"Toalla (opción 1)","cant":1,"link":"https://www.amazon.com/Huxie-capucha-org%C3%A1nico-esenciales-absorbentes/dp/B0C95GR4N9/ref=sr_1_13_sspa?crid=2YARLH566BBVY&dib=eyJ2IjoiMSJ9.VAus7eQc5mSy3r9WKN7BFw2jxIih0yBDwY7HW7upRTID7Fzq475atXIf-NGSrbHVOSzD8HKlpVzEblJteK2nIz6nlrwUUn7Z06UdwB9rVPXaHwtW84sdQh1y5HS67YT5C8HrqY5wraWaleB1K_-ytuSoyZR1twpbbvaMHqnrTq6HR7pVb79QLjR5n-x8ZV7fW3MTwcstAK-omZ9lQYJxvXqa96iB3h9foJqlXF9upmlR1SxNbYkq9UyjbOQRV27jFpLsYPxidxgjsqcClfEhsgqj8Gj8qhKWFzXdJ6zh1Iw.ccUz1qrSAk9WxL42slGWpjEi1Q6D3MgA-4N8Y8p9_Jc&dib_tag=se&keywords=toallas%2Bpara%2Bbebe&qid=1785548829&sprefix=toallas%2Bpara%2B%2Caps%2C296&sr=8-13-spons&sp_csd=d2lkZ2V0TmFtZT1zcF9tdGY&th=1","id":"toalla-opcion-1"},{"cat":"Aseo y salud","name":"Toalla (opción 2)","cant":1,"link":"https://www.amazon.com/KeaBabies-Paquete-pulgadas-absorbente-peque%C3%B1os/dp/B0DY1MGZPR/ref=sr_1_15_sspa?crid=2YARLH566BBVY&dib=eyJ2IjoiMSJ9.VAus7eQc5mSy3r9WKN7BFw2jxIih0yBDwY7HW7upRTID7Fzq475atXIf-NGSrbHVOSzD8HKlpVzEblJteK2nIz6nlrwUUn7Z06UdwB9rVPXaHwtW84sdQh1y5HS67YT5C8HrqY5wraWaleB1K_-ytuSoyZR1twpbbvaMHqnrTq6HR7pVb79QLjR5n-x8ZV7fW3MTwcstAK-omZ9lQYJxvXqa96iB3h9foJqlXF9upmlR1SxNbYkq9UyjbOQRV27jFpLsYPxidxgjsqcClfEhsgqj8Gj8qhKWFzXdJ6zh1Iw.ccUz1qrSAk9WxL42slGWpjEi1Q6D3MgA-4N8Y8p9_Jc&dib_tag=se&keywords=toallas%2Bpara%2Bbebe&qid=1785548829&sprefix=toallas%2Bpara%2B%2Caps%2C296&sr=8-15-spons&sp_csd=d2lkZ2V0TmFtZT1zcF9tdGY&th=1","id":"toalla-opcion-2"},{"cat":"Aseo y salud","name":"Toalla (opción 3)","cant":1,"link":"https://www.amazon.com/-/es/KeaBabies-Toalla-capucha-reci%C3%A9n-nacidos/dp/B0CV7V5KK7/ref=sr_1_6?crid=28OLRMTW6Y9L9&dib=eyJ2IjoiMSJ9.8qmcgv1-IamCoZMXv4UocTiYgStSe2B98K2eUc-79UNU_1RQLGv20_-UztjbOMv4GmwfQc5mzrj1AnBqS22VTwmXGv8ly18fx1eRlHC5Paow5UMod9rDrAJZ93SN8E9yl9YDByrR0Xvv113Dy88-tHcpcnt_bSsdzhhm8uApcvQm4NHwCYwC_--Hi5aX5qV4WlVeRKRoFKXTVR2pTSoXjIBkWdOfAK_MNOw75-SpSL22tlDFDjnTJeefY19ol2loORxakLye8CB2xbBT40kMCmJmK_kNGzAleH4E567tVzE.UrVNM-apfCz3VuzVtADlVPqExrJlNKdYYC5UXunkxG8&dib_tag=se&keywords=toallas%2Bpara%2Bbebe&qid=1785549405&sprefix=toall%2Caps%2C319&sr=8-6&th=1","id":"toalla-opcion-3"},{"cat":"Aseo y salud","name":"Toallitas / burping cloths (opción 1)","cant":1,"link":"https://www.amazon.com/org%C3%A1nicos-eructos-absorbentes-afelpados-infantiles/dp/B0814QNTL6/ref=sr_1_1_sspa?crid=3J8W51ZZPDZ13&dib=eyJ2IjoiMSJ9.tUL5zrsH_3yQ5atbGorj99qrh6Mf8mhH4FQqG7shaLezheENVaUQhw3fKzU4S42lhn8gkk9hj4EqP64i8jd_cHAeFhJksSF3ubmBDVv6bIITOgzdd2l4JZshGEXPJsrlHK4ULw-9NBWw5xuyfOE1Ay9PlTBbR8c2NjA8zYXZwHviOGU8FytzD63xHJ6pKjOq5m170B2Pkt85WiN3OQ8zUk0IDDo0YRj2vWNbGStm6Pj8sulpScf0fhpXkKyF-gPiV29xH8_gGs23lXe-w_Bl6XFG_7iml2xZQFc3KEOhEWA.lyIfHYZjr4QPL2sfItC4ODTrsWp3XbBTqfUqt0CDxtQ&dib_tag=se&keywords=burping%2Bcloths%2Bfor%2Bbabies&qid=1785549453&sprefix=burp%2Caps%2C226&sr=8-1-spons&sp_csd=d2lkZ2V0TmFtZT1zcF9hdGY&th=1","id":"toallitas-burping-cloths-opcion-1"},{"cat":"Aseo y salud","name":"Toallitas / burping cloths (opción 2)","cant":1,"link":"https://www.amazon.com/KeaBabies-Pack-pa%C3%B1os-para-eructos/dp/B0CMD9BH76/ref=sr_1_3_sspa?crid=3J8W51ZZPDZ13&dib=eyJ2IjoiMSJ9.tUL5zrsH_3yQ5atbGorj99qrh6Mf8mhH4FQqG7shaLezheENVaUQhw3fKzU4S42lhn8gkk9hj4EqP64i8jd_cHAeFhJksSF3ubmBDVv6bIITOgzdd2l4JZshGEXPJsrlHK4ULw-9NBWw5xuyfOE1Ay9PlTBbR8c2NjA8zYXZwHviOGU8FytzD63xHJ6pKjOq5m170B2Pkt85WiN3OQ8zUk0IDDo0YRj2vWNbGStm6Pj8sulpScf0fhpXkKyF-gPiV29xH8_gGs23lXe-w_Bl6XFG_7iml2xZQFc3KEOhEWA.lyIfHYZjr4QPL2sfItC4ODTrsWp3XbBTqfUqt0CDxtQ&dib_tag=se&keywords=burping%2Bcloths%2Bfor%2Bbabies&qid=1785549453&sprefix=burp%2Caps%2C226&sr=8-3-spons&sp_csd=d2lkZ2V0TmFtZT1zcF9hdGY&th=1","id":"toallitas-burping-cloths-opcion-2"},{"cat":"Aseo y salud","name":"Juego cepillo y peine","cant":1,"link":"https://www.amazon.com/cepillos-cepillo-madera-naturales-esencial/dp/B0GFMMZNTH/ref=sr_1_2_sspa?crid=259WI07RYKYJ4&dib=eyJ2IjoiMSJ9.feG1zrSZ2v4MFBYUHaGtyARbKmdJbf4HhUIYXX6_6yexZikpz7lFwkmHv4bWxk5gaXFzi4cO8QFUDmNgFDh19smur-xIz2saYyqIWm2v6ERQn-zGg-LiVbWZQ0UqyycpUKKZNkROa--lJLXQxa36MispHpx6HkMealb4uXwMC4ruVWmVfabHaSfpvUTubLOViOCuqxmNw4o5a6hSODm0WChocCKMwWE9gQv73bBSj6ACxURvSRtPF2KAOjvFlmQwb96xrH072fI6Ux3EJvdSttNZzyloOODACJ1bUJUuRUM.tZe5zRXX5tSuViodf9H3reeogzRui-vNnS45oKWE2ho&dib_tag=se&keywords=cepillo+y+peine+para+bebe+recien+nacido&qid=1785549742&sprefix=cepillo+y+pe%2Caps%2C276&sr=8-2-spons&sp_csd=d2lkZ2V0TmFtZT1zcF9hdGY&psc=1","id":"juego-cepillo-y-peine"},{"cat":"Cuarto","name":"Cobija","cant":1,"link":"https://pomboylola.com.co/collections/cobijas/products/cobija-borrego-hadas","id":"cobija"},{"cat":"Cuarto","name":"Sonajero","cant":null,"link":null,"id":"sonajero"},{"cat":"Cuarto","name":"Ruido blanco","cant":1,"link":"https://www.amazon.com/Momcozy-nocturna-entrenador-relajantes-temporizador/dp/B0D5CY5P9K/ref=sr_1_2_sspa?crid=SIEHQKQSRMUS&dib=eyJ2IjoiMSJ9.mvlb2nYitxBMNgOiIdBnA6cB2mDccW9ud0iQibBurC7InNpNtd-XtkkCLA6iIRxVHa58YHJbhJIvJnGMNGK3psbbO-tnRjOrvIq78ZI6HKuS-fhkLdyKCGkK6XC0pr_TqyuJ5re1jWcOKXQgurQ6kgNbb2dMPU0BHN3obIel7t-7e3G5gzqo37TW18Xz7o1DgVQ3QUgkOHgnnnv7zWfK3vV464w9FHC57B0hoZajBWGJ9VLyQChuGKUeKClhLs0NJ5bQtaOUsQpVvpXxJ1A_bMSybz0rLPtPnV7_cNK-Dno.OGtZjJcyJP-sH5hZQ2TWI61bVJLOASb-dEIubkLLKXk&dib_tag=se&keywords=ruido%2Bblanco%2Bpara%2Bbebes&qid=1785695895&sprefix=ruido%2B%2Caps%2C350&sr=8-2-spons&sp_csd=d2lkZ2V0TmFtZT1zcF9hdGY&th=1","id":"ruido-blanco"},{"cat":"Varios","name":"Muselina","cant":2,"link":"https://www.amazon.com/gp/product/B0FNQRWGQB/ref=ox_sc_act_image_5?smid=A3AQ1DJFVI2Z6L&amp=undefined&th=1","id":"muselina"},{"cat":"Varios","name":"Pañalera morral","cant":1,"link":"https://www.amazon.com/-/es/BabbleRoo-cambiador-cochecito-impermeable-multifunci%C3%B3n/dp/B09QJZ2P3D/ref=sr_1_24?__mk_es_US=%C3%85M%C3%85%C5%BD%C3%95%C3%91&crid=HRSDJQ0O1C3J&dib=eyJ2IjoiMSJ9.6fAFUXXLy4mK1W4JXG1l1WVblF-j2BLSaikTKDr_jebumGgjTc_ZPcA6MhqXG7r_4QiTEelYwmHJ6XbzjW5kRKwckhOlACXFI11ylYGeOmUHUKBnCXEZF84S1wom1098dJ3D6fj7thCHDeJEzepZEwg_5p0gwqEH9xoFoOqTUFklVCyi1Mxo9XzwjeGnTAeGFF_SqIiTZu0diywLnqjbdWpOuxPTOCBCMLgtna4JoY1l-iNkOluYjjoMZwr0fRG4kjYbpDxGhEtOWhK92WMzkdn6huRMjchys-cDVzUPdvQ.-PfTdld_9efN9jYorpmlkAHQIIXfvrML4986_uUYMn0&dib_tag=se&keywords=pa%C3%B1ales%2Bmorral&qid=1785696264&sprefix=pa%C3%B1alera%2Bmorral%2Caps%2C277&sr=8-24&th=1","id":"panalera-morral"},{"cat":"Varios","name":"Cambiador portátil","cant":1,"link":"https://pomboylola.com.co/collections/cambiadores-impermeables/products/cambiador-portable-jardin-magico","id":"cambiador-portatil"},{"cat":"Varios","name":"Pijama para dormir segura (pequeña)","cant":2,"link":"https://www.amazon.com/Love-Dream-Swaddle-calmante-sobresalto/dp/B0GSKLX5W7/ref=sr_1_1_sspa?__mk_es_US=%C3%85M%C3%85%C5%BD%C3%95%C3%91&amp=undefined&crid=INOX5DZ5BIAV&dib=eyJ2IjoiMSJ9.Y3KKsHFfLH3qIg-BDt8mAS4wZR9J35-7ECwJELTPKdgcdkgrtoKdCoIaArpmxSpf_Pu8XXRr2F6szNdRSh75yIGeOZ1L1BQzi4as5vRXIFK4ROCPJb2GZThfiRWJEmm82RiV2DqZdNCmGB9gRuwAEpeRfcs7ZaIryKhe8SYq12V_vKhRE-cc_cnxgkCEU3RS1FZO-l2fMNNm9ee5ncN7lNyf6sEjvGXFQ7Xd43IipWt_SdaQocXOqc1WbkxVIOjNhOQCnBP6rRzId-YohpFpci2WzXeLR4E78yoGgvG7u1o.T1QENgMGhP2p6fgTepOZ9t0npRdgPhZUlglSzvd6Dpc&dib_tag=se&keywords=swaddle&qid=1785528101&sprefix=swaddle%2Caps%2C262&sr=8-1-spons&sp_csd=d2lkZ2V0TmFtZT1zcF9hdGY&th=1","id":"pijama-para-dormir-segura-pequena"},{"cat":"Varios","name":"Pijama para dormir segura (2 meses)","cant":2,"link":"https://www.amazon.com/Love-Dream-Swaddle-calmante-sobresalto/dp/B0GSKSWCGM/ref=sr_1_1_sspa?__mk_es_US=%C3%85M%C3%85%C5%BD%C3%95%C3%91&amp=undefined&crid=INOX5DZ5BIAV&dib=eyJ2IjoiMSJ9.Y3KKsHFfLH3qIg-BDt8mAS4wZR9J35-7ECwJELTPKdgcdkgrtoKdCoIaArpmxSpf_Pu8XXRr2F6szNdRSh75yIGeOZ1L1BQzi4as5vRXIFK4ROCPJb2GZThfiRWJEmm82RiV2DqZdNCmGB9gRuwAEpeRfcs7ZaIryKhe8SYq12V_vKhRE-cc_cnxgkCEU3RS1FZO-l2fMNNm9ee5ncN7lNyf6sEjvGXFQ7Xd43IipWt_SdaQocXOqc1WbkxVIOjNhOQCnBP6rRzId-YohpFpci2WzXeLR4E78yoGgvG7u1o.T1QENgMGhP2p6fgTepOZ9t0npRdgPhZUlglSzvd6Dpc&dib_tag=se&keywords=swaddle&qid=1785528101&sprefix=swaddle%2Caps%2C262&sr=8-1-spons&sp_csd=d2lkZ2V0TmFtZT1zcF9hdGY&th=1","id":"pijama-para-dormir-segura-2-meses"},{"cat":"Varios","name":"Ropa (0 - 3; 3-6; 6-9; 9-12)","cant":null,"link":null,"id":"ropa-0-3-3-6-6-9-9-12"}];
+
+  var firebaseConfig = {
+  "apiKey": "AIzaSyC2tWymuC64NtIoHu2Ny3uKyXZEfUn1FRA",
+  "authDomain": "baby-shower-lucia-aa3ef.firebaseapp.com",
+  "databaseURL": "https://baby-shower-lucia-aa3ef-default-rtdb.firebaseio.com",
+  "projectId": "baby-shower-lucia-aa3ef",
+  "storageBucket": "baby-shower-lucia-aa3ef.firebasestorage.app",
+  "messagingSenderId": "1035591904218",
+  "appId": "1:1035591904218:web:e2921b671b31d2a4b3eee3"
+};
+
+  firebase.initializeApp(firebaseConfig);
+  var db = firebase.database();
+
+  var MINE_KEY = "regalos-lucia-mine-v1";
+
+  function loadMine() {
+    try {
+      var raw = localStorage.getItem(MINE_KEY);
+      return raw ? JSON.parse(raw) : {};
+    } catch (e) { return {}; }
+  }
+  function saveMine() {
+    try { localStorage.setItem(MINE_KEY, JSON.stringify(mine)); } catch (e) {}
+  }
+
+  var mine = loadMine();           // { [id]: how many *I* claimed on this device }
+  var globalClaims = {};           // { [id]: total claimed by everyone } — live from Firebase
+  var filterAvailOnly = false;
+  var searchTerm = "";
+
+  var grid = document.getElementById("grid");
+  var emptyState = document.getElementById("emptyState");
+  var progressNum = document.getElementById("progressNum");
+  var progressTotal = document.getElementById("progressTotal");
+  var progressFill = document.getElementById("progressFill");
+  var selbar = document.getElementById("selbar");
+  var selCount = document.getElementById("selCount");
+  var toast = document.getElementById("toast");
+  var liveDot = document.getElementById("liveDot");
+  var liveLabel = document.getElementById("liveLabel");
+
+  progressTotal.textContent = ITEMS.length;
+
+  function claimedFor(item) { return globalClaims[item.id] || 0; }
+  function mineFor(item) { return mine[item.id] || 0; }
+  function isUnlimited(item) { return item.cant === null || item.cant === undefined; }
+  function remainingFor(item) {
+    if (isUnlimited(item)) return null;
+    return Math.max(0, item.cant - claimedFor(item));
+  }
+
+  function escapeHtml(s) {
+    return String(s).replace(/[&<>"']/g, function (c) {
+      return { "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c];
+    });
+  }
+
+  function cardHtml(item) {
+    var total = claimedFor(item);
+    var myCount = mineFor(item);
+    var unlimited = isUnlimited(item);
+    var remaining = remainingFor(item);
+
+    var done = unlimited ? myCount > 0 : myCount > 0 && (item.cant === 1 ? true : false);
+    var qtyLabel, stepperHtml;
+
+    if (unlimited) {
+      done = myCount > 0;
+      qtyLabel = total > 0
+        ? (total + (total === 1 ? " persona ya lo elige" : " personas ya lo eligen"))
+        : "Cantidad abierta";
+      stepperHtml =
+        '<button class="btn-mark ' + (done ? "done" : "") + '" data-action="' + (done ? "dec" : "inc") + '" data-id="' + item.id + '">' +
+          (done ? "✓ Yo lo traigo" : "Yo lo traigo") +
+        "</button>";
+    } else if (item.cant === 1) {
+      var takenByOther = remaining <= 0 && myCount <= 0;
+      done = myCount > 0;
+      qtyLabel = takenByOther ? "Ya lo regaló alguien" : (done ? "Ya elegido" : "1 disponible");
+      stepperHtml =
+        '<button class="btn-mark ' + (done ? "done" : (takenByOther ? "full-taken" : "")) + '" data-action="' + (done ? "dec" : "inc") + '" data-id="' + item.id + '" ' + (takenByOther ? "disabled" : "") + '>' +
+          (done ? "✓ Lo regalo yo" : (takenByOther ? "Ya no disponible" : "Yo lo regalo")) +
+        "</button>";
+    } else {
+      qtyLabel = "Quedan " + remaining + " de " + item.cant;
+      stepperHtml =
+        '<button class="btn-step" data-action="dec" data-id="' + item.id + '" ' + (myCount <= 0 ? "disabled" : "") + ' aria-label="Quitar uno">−</button>' +
+        '<button class="btn-mark ' + (remaining <= 0 && myCount <= 0 ? "full-taken" : "") + '" data-action="inc" data-id="' + item.id + '" ' + (remaining <= 0 ? "disabled" : "") + '>' +
+          (myCount > 0 ? "Tú regalas " + myCount : (remaining <= 0 ? "Agotado" : "Yo lo regalo")) +
+        "</button>";
+    }
+
+    var linkHtml = item.link
+      ? '<a class="link-btn" href="' + escapeHtml(item.link) + '" target="_blank" rel="noopener noreferrer">Ver / comprar <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M7 17L17 7M17 7H9M17 7V15"/></svg></a>'
+      : '<span class="no-link">Sin link de compra</span>';
+
+    return (
+      '<article class="card' + (done ? " is-done" : "") + (!done && !isUnlimited(item) && remaining <= 0 ? " is-taken" : "") + '" data-id="' + item.id + '">' +
+        '<div class="card-top"><span class="cat-tag">' + escapeHtml(item.cat) + "</span></div>" +
+        '<div class="card-name">' + escapeHtml(item.name) + "</div>" +
+        '<div class="qty-row"><span class="qty-pill">' + qtyLabel + "</span></div>" +
+        '<div class="card-actions">' + stepperHtml + "</div>" +
+        linkHtml +
+      "</article>"
+    );
+  }
+
+  function render() {
+    var html = "";
+    var visibleCount = 0;
+    for (var i = 0; i < ITEMS.length; i++) {
+      var item = ITEMS[i];
+      var name = item.name.toLowerCase();
+      if (searchTerm && name.indexOf(searchTerm) === -1) continue;
+      var remaining = remainingFor(item);
+      var unlimited = isUnlimited(item);
+      if (filterAvailOnly) {
+        if (!unlimited && remaining <= 0 && mineFor(item) <= 0) continue;
+      }
+      visibleCount++;
+      html += cardHtml(item);
+    }
+    grid.innerHTML = html;
+    emptyState.hidden = visibleCount !== 0;
+    updateProgress();
+  }
+
+  function updateProgress() {
+    var chosenByMe = 0;
+    var myUnits = 0;
+    for (var i = 0; i < ITEMS.length; i++) {
+      var c = mineFor(ITEMS[i]);
+      if (c > 0) { chosenByMe++; myUnits += c; }
+    }
+    var totalChosenGlobally = 0;
+    for (var id in globalClaims) { if (globalClaims[id] > 0) totalChosenGlobally++; }
+    progressNum.textContent = totalChosenGlobally;
+    progressFill.style.width = (ITEMS.length ? (totalChosenGlobally / ITEMS.length) * 100 : 0) + "%";
+    selCount.textContent = myUnits;
+    selbar.classList.toggle("visible", chosenByMe > 0);
+  }
+
+  function showToast(msg) {
+    toast.textContent = msg;
+    toast.classList.add("visible");
+    clearTimeout(showToast._t);
+    showToast._t = setTimeout(function () { toast.classList.remove("visible"); }, 2600);
+  }
+
+  function findItem(id) {
+    for (var i = 0; i < ITEMS.length; i++) { if (ITEMS[i].id === id) return ITEMS[i]; }
+    return null;
+  }
+
+  function increment(item) {
+    var ref = db.ref("claims/" + item.id);
+    ref.transaction(function (current) {
+      current = current || 0;
+      var cap = item.cant;
+      if (cap !== null && cap !== undefined && current >= cap) return; // abort: no room
+      return current + 1;
+    }, function (error, committed) {
+      if (error) { showToast("No se pudo guardar, intenta de nuevo."); return; }
+      if (committed) {
+        mine[item.id] = (mine[item.id] || 0) + 1;
+        saveMine();
+        render();
+      } else {
+        showToast("Justo se acaba de agotar. Elige otra idea 💛");
+      }
+    });
+  }
+
+  function decrement(item) {
+    if (mineFor(item) <= 0) return;
+    var ref = db.ref("claims/" + item.id);
+    ref.transaction(function (current) {
+      current = current || 0;
+      return Math.max(0, current - 1);
+    }, function (error, committed) {
+      if (error) { showToast("No se pudo actualizar, intenta de nuevo."); return; }
+      if (committed) {
+        mine[item.id] = Math.max(0, (mine[item.id] || 0) - 1);
+        saveMine();
+        render();
+      }
+    });
+  }
+
+  grid.addEventListener("click", function (e) {
+    var btn = e.target.closest("button[data-action]");
+    if (!btn || btn.disabled) return;
+    var item = findItem(btn.getAttribute("data-id"));
+    if (!item) return;
+    var action = btn.getAttribute("data-action");
+    if (action === "inc") increment(item);
+    else if (action === "dec") decrement(item);
+  });
+
+  document.getElementById("searchInput").addEventListener("input", function (e) {
+    searchTerm = e.target.value.trim().toLowerCase();
+    render();
+  });
+
+  document.getElementById("filterAll").addEventListener("click", function () {
+    filterAvailOnly = false;
+    this.setAttribute("aria-pressed", "true");
+    document.getElementById("filterAvail").setAttribute("aria-pressed", "false");
+    render();
+  });
+  document.getElementById("filterAvail").addEventListener("click", function () {
+    filterAvailOnly = true;
+    this.setAttribute("aria-pressed", "true");
+    document.getElementById("filterAll").setAttribute("aria-pressed", "false");
+    render();
+  });
+
+  document.getElementById("copySelection").addEventListener("click", function () {
+    var lines = [];
+    for (var i = 0; i < ITEMS.length; i++) {
+      var c = mineFor(ITEMS[i]);
+      if (c > 0) lines.push("• " + ITEMS[i].name + (c > 1 ? " x" + c : ""));
+    }
+    if (!lines.length) return;
+    var text = "Voy a regalarle a Lucía:\n" + lines.join("\n");
+    var done = function () { showToast("Selección copiada. Pégala en el chat familiar 💛"); };
+    if (navigator.clipboard && navigator.clipboard.writeText) {
+      navigator.clipboard.writeText(text).then(done).catch(function () { fallbackCopy(text, done); });
+    } else {
+      fallbackCopy(text, done);
+    }
+  });
+
+  function fallbackCopy(text, cb) {
+    var ta = document.createElement("textarea");
+    ta.value = text;
+    ta.style.position = "fixed";
+    ta.style.opacity = "0";
+    document.body.appendChild(ta);
+    ta.select();
+    try { document.execCommand("copy"); } catch (e) {}
+    document.body.removeChild(ta);
+    cb();
+  }
+
+  // Live sync: whenever anyone (including us) changes a claim, this fires.
+  db.ref("claims").on("value", function (snapshot) {
+    globalClaims = snapshot.val() || {};
+    render();
+  });
+
+  db.ref(".info/connected").on("value", function (snap) {
+    var connected = snap.val() === true;
+    liveDot.classList.toggle("offline", !connected);
+    liveLabel.textContent = connected ? "En vivo — sincronizado con todos" : "Conectando…";
+  });
+
+  render();
+})();
+</script>
